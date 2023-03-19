@@ -1,0 +1,6 @@
+To activate virtual environment, run 'venv\Scripts\activate' in 'alarms_api'.
+To install new packages, run 'pipenv install {package}".
+To install dependencies, run 'pipenv sync'.
+
+venv\Scripts\activate
+pipenv sync
