@@ -1,5 +1,5 @@
 {
-  "name": "alarms",
+  "name": "timers",
   "version": "0.1.0",
   "private": true,
   "proxy":"http://127.0.0.1:5000/",
@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "api": "python ../alarms_api/src/app.py",
+    "api": "python ../timers_api/src/app.py",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

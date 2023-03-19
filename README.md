@@ -1,15 +1,15 @@
-# Alarms
+# Timers
 
 Clone the project by running
 
 ```
-git clone https://github.com/javidahmed64592/alarms.git
+git clone https://github.com/javidahmed64592/timers.git
 ```
 
 Installing Python dependencies:
 
 ```
-cd alarms_api
+cd timers_api
 venv\Scripts\activate
 pipenv sync
 ```
@@ -17,7 +17,7 @@ pipenv sync
 Installing React dependencies:
 
 ```
-cd alarms
+cd timers
 npm install
 ```
 
