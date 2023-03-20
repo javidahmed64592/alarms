@@ -11,7 +11,6 @@ function HomePage(props) {
     fetch("/data").then((res) =>
       res.json().then((data) => {
         setData({
-          title: data.title,
           date: data.time_now,
         });
       })
@@ -19,11 +18,14 @@ function HomePage(props) {
   }, []);
 
   return (
-    <header className="App-header" style={{ color: props.colour_text }}>
-      <h1>React and Flask</h1>
-      <p>{data.title}</p>
-      <p>{data.date}</p>
-    </header>
+    <div>
+      <header className="App-header" style={{ color: props.colour_text }}>
+        <h3>No timers set! Add new timers or load a preset.</h3>
+      </header>
+      <footer style={{ color: props.colour_text }}>
+        Last refresh: {data.date}
+      </footer>
+    </div>
   );
 }
 
