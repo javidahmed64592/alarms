@@ -1,4 +1,5 @@
 import "./App.css";
+import { Box } from "@mui/material";
 import colours from "./public/Colours";
 import NavBar from "./components/NavBar";
 import HomePage from "./pages/Home";
@@ -11,7 +12,10 @@ const AppProps = {
 
 function App() {
   return (
-    <div
+    <Box
+      height="100vh"
+      display="flex"
+      flexDirection="column"
       className="App"
       style={{ backgroundColor: AppProps.colour_background }}
     >
@@ -19,8 +23,11 @@ function App() {
         colour_primary={AppProps.colour_primary}
         colour_text={AppProps.colour_text}
       />
-      <HomePage colour_text={AppProps.colour_text} />
-    </div>
+      <HomePage
+        colour_background={AppProps.colour_background}
+        colour_text={AppProps.colour_text}
+      />
+    </Box>
   );
 }
 
