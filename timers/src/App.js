@@ -7,6 +7,7 @@ import HomePage from "./pages/Home";
 const AppProps = {
   colour_primary: colours.primary,
   colour_background: colours.secondary,
+  colour_tertiary: colours.tertiary,
   colour_text: colours.text,
 };
 
@@ -26,6 +27,7 @@ function App() {
       <HomePage
         colour_background={AppProps.colour_background}
         colour_text={AppProps.colour_text}
+        colour_tertiary={AppProps.colour_tertiary}
       />
     </Box>
   );

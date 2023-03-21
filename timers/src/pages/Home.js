@@ -1,6 +1,7 @@
 // Importing modules
-import { Box } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import GridItem from "../components/GridItem";
 
 function HomePage(props) {
   const [data, setData] = useState({
@@ -19,15 +20,47 @@ function HomePage(props) {
   }, []);
 
   return (
-    <Box height="100vh" display="flex" flexDirection="column">
-      <header className="App-header" style={{ color: props.colour_text }}>
-        <h3>No timers set! Add new timers or load a preset.</h3>
-      </header>
+    <Grid
+      container
+      direction="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      style={{
+        minWidth: "100%",
+        height: "100vh",
+      }}
+    >
+      <GridItem
+        item={
+          <Typography
+            style={{ color: props.colour_text, margin: 10, fontSize: "24px" }}
+          >
+            No timers set! Add new timers or load a preset.
+          </Typography>
+        }
+      />
 
-      <footer style={{ color: props.colour_text }}>
-        Last refresh: {data.date}
-      </footer>
-    </Box>
+      <GridItem
+        item={
+          <Box
+            margin={2}
+            style={{ backgroundColor: props.colour_tertiary, flex: 1 }}
+          >
+            placeholder
+          </Box>
+        }
+        border="solid"
+        flexGrow={1}
+      />
+
+      <GridItem
+        item={
+          <Typography style={{ color: props.colour_text }}>
+            Last refresh: {data.date}
+          </Typography>
+        }
+      />
+    </Grid>
   );
 }
 
