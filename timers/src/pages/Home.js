@@ -1,7 +1,11 @@
 // Importing modules
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Stack } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import SaveIcon from "@mui/icons-material/Save";
 import React, { useState, useEffect } from "react";
 import GridItem from "../components/GridItem";
+import StyledButton from "../components/StyledButton";
 
 function HomePage(props) {
   const [data, setData] = useState({
@@ -43,7 +47,7 @@ function HomePage(props) {
       <GridItem
         item={
           <Box
-            margin={2}
+            margin={1}
             style={{ backgroundColor: props.colour_tertiary, flex: 1 }}
           >
             placeholder
@@ -52,6 +56,33 @@ function HomePage(props) {
         border="solid"
         flexGrow={1}
       />
+
+      <Stack direction="row" margin={1} spacing={2}>
+        <StyledButton
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => alert("Clicked add!")}
+          backgroundColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+          label={props.addButtonText}
+        />
+        <StyledButton
+          variant="contained"
+          startIcon={<UploadFileIcon />}
+          onClick={() => alert("Clicked load!")}
+          backgroundColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+          label={props.loadButtonText}
+        />
+        <StyledButton
+          variant="contained"
+          startIcon={<SaveIcon />}
+          onClick={() => alert("Clicked save!")}
+          backgroundColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+          label={props.saveButtonText}
+        />
+      </Stack>
 
       <GridItem
         item={
