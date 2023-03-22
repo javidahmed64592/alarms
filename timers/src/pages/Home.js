@@ -3,8 +3,13 @@ import { Box, Grid, Typography, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import StopIcon from "@mui/icons-material/Stop";
 import GridItem from "../components/GridItem";
-import StyledButton from "../components/StyledButton";
+import TimerObject from "../components/TimerObject";
+import StyledTextIconButton from "../components/StyledTextIconButton";
+import StyledIconButton from "../components/StyledIconButton";
 
 function HomePage(props) {
   const [data, setData] = useState({
@@ -49,7 +54,7 @@ function HomePage(props) {
             margin={1}
             style={{ backgroundColor: props.colour_tertiary, flex: 1 }}
           >
-            placeholder
+            <TimerObject hours={0} minutes={0} seconds={5} started={false} />
           </Box>
         }
         border="solid"
@@ -57,7 +62,34 @@ function HomePage(props) {
       />
 
       <Stack direction="row" margin={1} spacing={2}>
-        <StyledButton
+        <StyledIconButton
+          variant="contained"
+          icon={<PlayArrowIcon fontSize="inherit" />}
+          onClick={() => alert("Clicked play!")}
+          size={"large"}
+          iconColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+        />
+        <StyledIconButton
+          variant="contained"
+          icon={<PauseIcon fontSize="inherit" />}
+          onClick={() => alert("Clicked pause!")}
+          size={"large"}
+          iconColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+        />
+        <StyledIconButton
+          variant="contained"
+          icon={<StopIcon fontSize="inherit" />}
+          onClick={() => alert("Clicked stop!")}
+          size={"large"}
+          iconColor={props.colour_primary}
+          borderColour={props.colour_tertiary}
+        />
+      </Stack>
+
+      <Stack direction="row" margin={1} spacing={2}>
+        <StyledTextIconButton
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => alert("Clicked add!")}
@@ -65,7 +97,7 @@ function HomePage(props) {
           borderColour={props.colour_tertiary}
           label={props.addButtonText}
         />
-        <StyledButton
+        <StyledTextIconButton
           variant="contained"
           startIcon={<UploadFileIcon />}
           onClick={() => alert("Clicked load!")}
@@ -73,7 +105,7 @@ function HomePage(props) {
           borderColour={props.colour_tertiary}
           label={props.loadButtonText}
         />
-        <StyledButton
+        <StyledTextIconButton
           variant="contained"
           startIcon={<SaveIcon />}
           onClick={() => alert("Clicked save!")}

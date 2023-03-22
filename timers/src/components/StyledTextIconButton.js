@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@mui/material";
 
-export default function StyledButton(props) {
+export default function StyledTextIconButton(props) {
   return (
     <Button
       variant={props.variant}
