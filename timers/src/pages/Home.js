@@ -50,14 +50,19 @@ function HomePage(props) {
 
       <GridItem
         item={
-          <Box
-            margin={1}
-            style={{ backgroundColor: props.colour_tertiary, flex: 1 }}
-          >
-            <TimerObject hours={0} minutes={0} seconds={5} started={false} />
+          <Box margin={1} style={{ flex: 1 }}>
+            <TimerObject
+              label={"Timer 1"}
+              hours={0}
+              minutes={100}
+              seconds={5}
+              started={false}
+              colour_secondary={props.colour_background}
+              colour_text={props.colour_primary}
+              backgroundColor={props.colour_tertiary}
+            />
           </Box>
         }
-        border="solid"
         flexGrow={1}
       />
 

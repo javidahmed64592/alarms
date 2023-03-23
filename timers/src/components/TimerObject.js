@@ -1,5 +1,12 @@
 import React, { useState, useRef } from "react";
+import { Card } from "@mui/material";
+import { Stack } from "@mui/system";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { getTimeRemaining, parseTimeText } from "../utils/TimerUtils";
+import TimerDisplay from "./TimerDisplay";
+import StyledIconButton from "../components/StyledIconButton";
 
 export default function TimerObject(props) {
   const Ref = useRef(null);
@@ -52,15 +59,50 @@ export default function TimerObject(props) {
   };
 
   return (
-    <div className="App">
-      <h2>
-        {parseTimeText(remainingTime).hoursText}:
-        {parseTimeText(remainingTime).minutesText}:
-        {parseTimeText(remainingTime).secondsText}
-      </h2>
-      <button onClick={onClickStart}>Start</button>
-      <button onClick={stopTimer}>Pause</button>
-      <button onClick={onClickReset}>Reset</button>
-    </div>
+    <Card
+      variant="outlined"
+      style={{
+        backgroundColor: props.colour_secondary,
+        border: "1px solid",
+        borderColor: props.colour_text,
+      }}
+    >
+      <Stack justifyContent="center" alignItems="center">
+        <TimerDisplay
+          label={props.label}
+          hoursText={parseTimeText(remainingTime).hoursText}
+          minutesText={parseTimeText(remainingTime).minutesText}
+          secondsText={parseTimeText(remainingTime).secondsText}
+          colour_text={props.colour_text}
+          backgroundColor={props.backgroundColor}
+        />
+        <Stack direction="row" spacing={3}>
+          <StyledIconButton
+            variant="contained"
+            icon={<PlayArrowIcon fontSize="inherit" />}
+            onClick={onClickStart}
+            size={"large"}
+            iconColor={props.colour_text}
+            borderColour={props.colour_tertiary}
+          />
+          <StyledIconButton
+            variant="contained"
+            icon={<PauseIcon fontSize="inherit" />}
+            onClick={stopTimer}
+            size={"large"}
+            iconColor={props.colour_text}
+            borderColour={props.colour_tertiary}
+          />
+          <StyledIconButton
+            variant="contained"
+            icon={<RestartAltIcon fontSize="inherit" />}
+            onClick={onClickReset}
+            size={"large"}
+            iconColor={props.colour_text}
+            borderColour={props.colour_tertiary}
+          />
+        </Stack>
+      </Stack>
+    </Card>
   );
 }
