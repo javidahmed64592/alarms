@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { Paper } from "@mui/material";
 import { getTimeRemaining, parseTimeText } from "../utils/TimerUtils";
 
 export default function TimerObject(props) {
@@ -11,8 +10,6 @@ export default function TimerObject(props) {
 
   const [remainingTime, setRemainingTime] = useState(getTotalTime());
 
-  const [running, setRunning] = useState(false);
-
   const resetTime = () => {
     setRemainingTime(getTotalTime);
   };
@@ -21,13 +18,14 @@ export default function TimerObject(props) {
     let { total } = getTimeRemaining(e);
     if (total >= 0) {
       setRemainingTime(total);
-      total === 0 ? stopTimer() : setRunning(true);
+      if (total === 0) {
+        stopTimer();
+      }
     }
   };
 
   const stopTimer = () => {
     if (Ref.current) clearInterval(Ref.current);
-    setRunning(false);
   };
 
   const clearTimer = (e) => {
@@ -45,18 +43,12 @@ export default function TimerObject(props) {
   };
 
   const onClickReset = () => {
-    setRunning(false);
     stopTimer();
     resetTime();
   };
 
   const onClickStart = () => {
-    if (running) {
-      stopTimer();
-    } else {
-      clearTimer(getDeadTime());
-    }
-    setRunning(!running);
+    clearTimer(getDeadTime());
   };
 
   return (
@@ -67,6 +59,7 @@ export default function TimerObject(props) {
         {parseTimeText(remainingTime).secondsText}
       </h2>
       <button onClick={onClickStart}>Start</button>
+      <button onClick={stopTimer}>Pause</button>
       <button onClick={onClickReset}>Reset</button>
     </div>
   );
