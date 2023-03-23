@@ -5,7 +5,7 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
-import StopIcon from "@mui/icons-material/Stop";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import GridItem from "../components/GridItem";
 import TimerObject from "../components/TimerObject";
 import StyledTextIconButton from "../components/StyledTextIconButton";
@@ -80,8 +80,8 @@ function HomePage(props) {
         />
         <StyledIconButton
           variant="contained"
-          icon={<StopIcon fontSize="inherit" />}
-          onClick={() => alert("Clicked stop!")}
+          icon={<RestartAltIcon fontSize="inherit" />}
+          onClick={() => alert("Clicked reset!")}
           size={"large"}
           iconColor={props.colour_primary}
           borderColour={props.colour_tertiary}
