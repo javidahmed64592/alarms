@@ -41,7 +41,7 @@ function HomePage(props) {
       <GridItem
         item={
           <Typography
-            style={{ color: props.colour_text, margin: 10, fontSize: "24px" }}
+            style={{ color: props.colour_text, margin: 6, fontSize: "24px" }}
           >
             No timers set! Add new timers or load a preset.
           </Typography>
@@ -60,6 +60,14 @@ function HomePage(props) {
               colour_secondary={props.colour_background}
               colour_text={props.colour_primary}
               backgroundColor={props.colour_tertiary}
+            />
+            <StyledIconButton
+              variant="contained"
+              icon={<AddIcon fontSize="inherit" />}
+              onClick={() => alert("Clicked add!")}
+              size={"large"}
+              iconColor={props.colour_primary}
+              borderColour={props.colour_tertiary}
             />
           </Box>
         }
@@ -94,14 +102,6 @@ function HomePage(props) {
       </Stack>
 
       <Stack direction="row" margin={1} spacing={2}>
-        <StyledTextIconButton
-          variant="contained"
-          startIcon={<AddIcon />}
-          onClick={() => alert("Clicked add!")}
-          backgroundColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-          label={props.addButtonText}
-        />
         <StyledTextIconButton
           variant="contained"
           startIcon={<UploadFileIcon />}
