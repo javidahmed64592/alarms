@@ -23,7 +23,8 @@
     "api": "cd ../timers_api/src && pipenv run python app.py",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "ngrok": "ngrok http 3000 --host-header=\"localhost:3000\""
   },
   "eslintConfig": {
     "extends": [
