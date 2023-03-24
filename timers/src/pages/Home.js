@@ -27,6 +27,21 @@ function HomePage(props) {
     );
   }, []);
 
+  const timers = [
+    {
+      label: "Timer 1",
+      hours: 1,
+      minutes: 0,
+      seconds: 0,
+    },
+    {
+      label: "Timer 2",
+      hours: 1,
+      minutes: 0,
+      seconds: 0,
+    },
+  ];
+
   return (
     <Grid
       container
@@ -51,16 +66,20 @@ function HomePage(props) {
       <GridItem
         item={
           <Box margin={1} style={{ flex: 1 }}>
-            <TimerObject
-              label={"Timer 1"}
-              hours={0}
-              minutes={100}
-              seconds={5}
-              started={false}
-              colour_secondary={props.colour_background}
-              colour_text={props.colour_primary}
-              backgroundColor={props.colour_tertiary}
-            />
+            {timers.map((timer) => {
+              return (
+                <TimerObject
+                  label={timer.label}
+                  hours={timer.hours}
+                  minutes={timer.minutes}
+                  seconds={timer.seconds}
+                  started={false}
+                  colour_secondary={props.colour_background}
+                  colour_text={props.colour_primary}
+                  backgroundColor={props.colour_tertiary}
+                />
+              );
+            })}
             <StyledIconButton
               variant="contained"
               icon={<AddIcon fontSize="inherit" />}
