@@ -2,13 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@mui/material";
 import { Stack } from "@mui/system";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import TimerDisplay from "./TimerDisplay";
 import StyledIconButton from "./StyledIconButton";
 import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
-import { startTimer, stopTimer } from "../state/TimerSlice";
+import { stopTimer } from "../state/TimerSlice";
 
 export default function TimerListItem(props) {
   const Ref = useRef(null);
@@ -41,14 +39,6 @@ export default function TimerListItem(props) {
     resetTime();
   };
 
-  const onClickStop = () => {
-    dispatch(stopTimer(props.label));
-  };
-
-  const onClickStart = () => {
-    dispatch(startTimer(props.label));
-  };
-
   return (
     <Card
       variant="outlined"
@@ -71,22 +61,6 @@ export default function TimerListItem(props) {
           backgroundColor={props.backgroundColor}
         />
         <Stack direction="row" spacing={3}>
-          <StyledIconButton
-            variant="contained"
-            icon={<PlayArrowIcon fontSize="inherit" />}
-            onClick={onClickStart}
-            size={"large"}
-            iconColor={props.colour_text}
-            borderColour={props.colour_tertiary}
-          />
-          <StyledIconButton
-            variant="contained"
-            icon={<PauseIcon fontSize="inherit" />}
-            onClick={onClickStop}
-            size={"large"}
-            iconColor={props.colour_text}
-            borderColour={props.colour_tertiary}
-          />
           <StyledIconButton
             variant="contained"
             icon={<RestartAltIcon fontSize="inherit" />}

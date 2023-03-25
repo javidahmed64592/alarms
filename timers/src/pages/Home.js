@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Box, Grid, Typography, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -11,8 +11,10 @@ import GridItem from "../components/GridItem";
 import TimerListItem from "../components/TimerListItem";
 import StyledTextIconButton from "../components/StyledTextIconButton";
 import StyledIconButton from "../components/StyledIconButton";
+import { startTimers, stopTimers } from "../state/TimerSlice";
 
 function HomePage(props) {
+  const dispatch = useDispatch();
   const [data, setData] = useState({
     title: "",
     date: "",
@@ -89,7 +91,7 @@ function HomePage(props) {
         <StyledIconButton
           variant="contained"
           icon={<PlayArrowIcon fontSize="inherit" />}
-          onClick={() => alert("Clicked play!")}
+          onClick={() => dispatch(startTimers())}
           size={"large"}
           iconColor={props.colour_primary}
           borderColour={props.colour_tertiary}
@@ -97,7 +99,7 @@ function HomePage(props) {
         <StyledIconButton
           variant="contained"
           icon={<PauseIcon fontSize="inherit" />}
-          onClick={() => alert("Clicked pause!")}
+          onClick={() => dispatch(stopTimers())}
           size={"large"}
           iconColor={props.colour_primary}
           borderColour={props.colour_tertiary}

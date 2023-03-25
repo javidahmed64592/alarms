@@ -41,7 +41,10 @@ export const timerSlice = createSlice({
       });
     },
     startTimers: (state) => {
-      state.value = state.value.map((timer) => (timer.running = true));
+      state.value = state.value = state.value.map((timer) => {
+        timer.running = true;
+        return timer;
+      });
     },
     stopTimer: (state, action) => {
       state.value = state.value.map((timer) => {
@@ -51,7 +54,10 @@ export const timerSlice = createSlice({
       });
     },
     stopTimers: (state) => {
-      state.value = state.value.map((timer) => (timer.running = false));
+      state.value = state.value = state.value.map((timer) => {
+        timer.running = false;
+        return timer;
+      });
     },
   },
 });
