@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
+import DeleteIcon from "@mui/icons-material/Delete";
 import TimerComponentDisplay from "./TimerComponentDisplay";
 import StyledIconButton from "./StyledIconButton";
 import { deleteTimer } from "../state/TimerSlice";

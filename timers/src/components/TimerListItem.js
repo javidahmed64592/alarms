@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@mui/material";
 import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
 import TimerDisplay from "./TimerDisplay";
 import StyledIconButton from "./StyledIconButton";
-import { useDispatch, useSelector } from "react-redux";
+import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
 import { startTimer, stopTimer } from "../state/TimerSlice";
 
 export default function TimerListItem(props) {
