@@ -62,7 +62,6 @@ export default function TimerListItem(props) {
         <TimerDisplay
           key={props.label}
           label={props.label}
-          running={running}
           hoursText={parseTimeText(remainingTime).hoursText}
           minutesText={parseTimeText(remainingTime).minutesText}
           secondsText={parseTimeText(remainingTime).secondsText}

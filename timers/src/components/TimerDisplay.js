@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Stack } from "@mui/system";
@@ -9,10 +9,14 @@ import { deleteTimer } from "../state/TimerSlice";
 
 export default function TimerDisplay(props) {
   const dispatch = useDispatch();
+  const running = useSelector(
+    (state) =>
+      state.timers.value.find((timer) => timer.label === props.label).running
+  );
   const timeText = [props.hoursText, props.minutesText, props.secondsText];
   const timeComponentText = ["HOURS", "MINUTES", "SECONDS"];
 
-  const deleteIconColour = !props.running
+  const deleteIconColour = !running
     ? props.colour_primary
     : props.colour_tertiary;
 
