@@ -29,7 +29,7 @@ export default function TimerDisplay(props) {
           fontSize: "36px",
         }}
       >
-        {props.label} {`Running: ${props.running}`}
+        {props.label}
       </Typography>
 
       <Stack direction="row" margin={0} spacing={2}>
