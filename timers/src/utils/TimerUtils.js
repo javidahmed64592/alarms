@@ -1,18 +1,13 @@
-export const getTimeRemaining = (deadline) => {
-  const total = (Date.parse(deadline) - Date.parse(new Date())) / 1000;
-  const { hours, minutes, seconds } = parseTime(total);
-  return {
-    total,
-    hours,
-    minutes,
-    seconds,
-  };
+export const getTotalTime = (seconds, minutes, hours) => {
+  return seconds + minutes * 60 + hours * 3600;
 };
 
-export const parseTime = (total) => {
-  const seconds = Math.floor(total % 60);
-  const minutes = Math.floor((total / 60) % 60);
-  const hours = Math.floor((total / 60 / 60) % 24);
+const parseTime = (total) => {
+  const hours = Math.floor(total / 3600);
+  const remainingSeconds = total % 3600;
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
   return {
     hours,
     minutes,

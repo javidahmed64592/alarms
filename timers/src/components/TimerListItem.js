@@ -1,64 +1,46 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Card } from "@mui/material";
 import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { getTimeRemaining, parseTimeText } from "../utils/TimerUtils";
+import { getTotalTime, parseTimeText } from "../utils/TimerUtils";
 import TimerDisplay from "./TimerDisplay";
 import StyledIconButton from "./StyledIconButton";
 
 export default function TimerListItem(props) {
   const Ref = useRef(null);
 
-  const getTotalTime = () => {
-    return props.seconds + props.minutes * 60 + props.hours * 3600;
-  };
-
-  const [remainingTime, setRemainingTime] = useState(getTotalTime());
+  const [remainingTime, setRemainingTime] = useState(
+    getTotalTime(props.seconds, props.minutes, props.hours)
+  );
   const [running, setRunning] = useState(false);
 
-  const resetTime = () => {
-    setRemainingTime(getTotalTime);
-  };
-
-  const startTimer = (e) => {
-    let { total } = getTimeRemaining(e);
-    if (total >= 0) {
-      setRemainingTime(total);
-      if (total === 0) {
-        stopTimer();
-      }
+  useEffect(() => {
+    if (running && remainingTime > 0) {
+      const interval = setInterval(() => {
+        setRemainingTime(remainingTime - 1);
+      }, 1000);
+      Ref.current = interval;
     }
-  };
+    return () => clearInterval(Ref.current);
+  }, [running, remainingTime]);
 
-  const stopTimer = () => {
-    if (Ref.current) clearInterval(Ref.current);
-    setRunning(false);
-  };
-
-  const clearTimer = (e) => {
-    stopTimer();
-    const id = setInterval(() => {
-      setRunning(true);
-      startTimer(e);
-    }, 1000);
-    Ref.current = id;
-  };
-
-  const getDeadTime = () => {
-    let deadline = new Date();
-    deadline.setSeconds(deadline.getSeconds() + remainingTime);
-    return deadline;
+  const resetTime = () => {
+    setRemainingTime(getTotalTime(props.seconds, props.minutes, props.hours));
   };
 
   const onClickReset = () => {
-    stopTimer();
+    setRunning(false);
     resetTime();
   };
 
+  const onClickStop = () => {
+    setRunning(false);
+  };
+
   const onClickStart = () => {
-    clearTimer(getDeadTime());
+    setRunning(true);
   };
 
   return (
@@ -95,7 +77,7 @@ export default function TimerListItem(props) {
           <StyledIconButton
             variant="contained"
             icon={<PauseIcon fontSize="inherit" />}
-            onClick={stopTimer}
+            onClick={onClickStop}
             size={"large"}
             iconColor={props.colour_text}
             borderColour={props.colour_tertiary}
