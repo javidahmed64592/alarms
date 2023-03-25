@@ -4,7 +4,7 @@ import { Stack } from "@mui/system";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import { getTotalTime, parseTimeText } from "../utils/TimerUtils";
+import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
 import TimerDisplay from "./TimerDisplay";
 import StyledIconButton from "./StyledIconButton";
 
@@ -12,7 +12,7 @@ export default function TimerListItem(props) {
   const Ref = useRef(null);
 
   const [remainingTime, setRemainingTime] = useState(
-    getTotalTime(props.seconds, props.minutes, props.hours)
+    HMSToTotal(props.hours, props.minutes, props.seconds)
   );
   const [running, setRunning] = useState(false);
 
@@ -27,7 +27,7 @@ export default function TimerListItem(props) {
   }, [running, remainingTime]);
 
   const resetTime = () => {
-    setRemainingTime(getTotalTime(props.seconds, props.minutes, props.hours));
+    setRemainingTime(HMSToTotal(props.hours, props.minutes, props.seconds));
   };
 
   const onClickReset = () => {

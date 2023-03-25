@@ -1,15 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const getTimerLength = (timer) => {
-  return timer.seconds + timer.minutes * 60 + timer.hours * 3600;
-};
-
-const sortListByTime = (listToSort) => {
-  const newList = listToSort.sort(
-    (timerA, timerB) => getTimerLength(timerA) - getTimerLength(timerB)
-  );
-  return newList;
-};
+import { sortListByTime } from "../utils/TimerUtils";
 
 export const timerSlice = createSlice({
   name: "timers",
@@ -17,15 +7,17 @@ export const timerSlice = createSlice({
     value: [
       {
         label: "Timer 1",
-        hours: 1,
+        hours: 0,
         minutes: 0,
-        seconds: 0,
+        seconds: 5,
+        running: false,
       },
       {
         label: "Timer 2",
         hours: 2,
         minutes: 0,
         seconds: 0,
+        running: false,
       },
     ],
   },
