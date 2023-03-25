@@ -33,11 +33,45 @@ export const timerSlice = createSlice({
         (timer) => timer.label !== action.payload
       );
     },
+    startTimer: (state, action) => {
+      state.value = state.value.map((timer) => {
+        const running = timer.label === action.payload ? true : timer.running;
+        timer.running = running;
+        return timer;
+      });
+    },
+    startTimers: (state) => {
+      state.value = state.value.map((timer) => (timer.running = true));
+    },
+    stopTimer: (state, action) => {
+      state.value = state.value.map((timer) => {
+        const running = timer.label === action.payload ? false : timer.running;
+        timer.running = running;
+        return timer;
+      });
+    },
+    stopTimers: (state) => {
+      state.value = state.value.map((timer) => (timer.running = false));
+    },
   },
 });
 
-export const { setList, addTimer, deleteTimer } = timerSlice.actions;
+export const {
+  setList,
+  addTimer,
+  deleteTimer,
+  startTimer,
+  startTimers,
+  stopTimer,
+  stopTimers,
+} = timerSlice.actions;
 
 export const selectList = (state) => state.timers.value;
+
+export const getTimerRunning = (state, label) => {
+  const timer = state.timers.value.find((timer) => timer.label === label);
+
+  return timer.running;
+};
 
 export default timerSlice.reducer;

@@ -7,14 +7,20 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
 import TimerDisplay from "./TimerDisplay";
 import StyledIconButton from "./StyledIconButton";
+import { useDispatch, useSelector } from "react-redux";
+import { startTimer, stopTimer } from "../state/TimerSlice";
 
 export default function TimerListItem(props) {
   const Ref = useRef(null);
+  const dispatch = useDispatch();
 
   const [remainingTime, setRemainingTime] = useState(
     HMSToTotal(props.hours, props.minutes, props.seconds)
   );
-  const [running, setRunning] = useState(false);
+  const running = useSelector(
+    (state) =>
+      state.timers.value.find((timer) => timer.label === props.label).running
+  );
 
   useEffect(() => {
     if (running && remainingTime > 0) {
@@ -31,16 +37,16 @@ export default function TimerListItem(props) {
   };
 
   const onClickReset = () => {
-    setRunning(false);
+    dispatch(stopTimer(props.label));
     resetTime();
   };
 
   const onClickStop = () => {
-    setRunning(false);
+    dispatch(stopTimer(props.label));
   };
 
   const onClickStart = () => {
-    setRunning(true);
+    dispatch(startTimer(props.label));
   };
 
   return (
