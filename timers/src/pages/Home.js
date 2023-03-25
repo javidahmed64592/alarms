@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Box, Grid, Typography, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -7,7 +8,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import GridItem from "../components/GridItem";
-import TimerObject from "../components/TimerObject";
+import TimerListItem from "../components/TimerListItem";
 import StyledTextIconButton from "../components/StyledTextIconButton";
 import StyledIconButton from "../components/StyledIconButton";
 
@@ -27,20 +28,7 @@ function HomePage(props) {
     );
   }, []);
 
-  const timers = [
-    {
-      label: "Timer 1",
-      hours: 1,
-      minutes: 0,
-      seconds: 0,
-    },
-    {
-      label: "Timer 2",
-      hours: 1,
-      minutes: 0,
-      seconds: 0,
-    },
-  ];
+  const timers = useSelector((state) => state.timers.value);
 
   return (
     <Grid
@@ -55,31 +43,36 @@ function HomePage(props) {
     >
       <GridItem
         item={
-          <Typography
-            style={{ color: props.colour_text, margin: 6, fontSize: "24px" }}
-          >
-            No timers set! Add new timers or load a preset.
-          </Typography>
-        }
-      />
-
-      <GridItem
-        item={
           <Box margin={1} style={{ flex: 1 }}>
-            {timers.map((timer) => {
-              return (
-                <TimerObject
-                  label={timer.label}
-                  hours={timer.hours}
-                  minutes={timer.minutes}
-                  seconds={timer.seconds}
-                  started={false}
-                  colour_secondary={props.colour_background}
-                  colour_text={props.colour_primary}
-                  backgroundColor={props.colour_tertiary}
-                />
-              );
-            })}
+            {timers.length ? (
+              timers.map((timer) => {
+                return (
+                  <TimerListItem
+                    key={timer.label}
+                    label={timer.label}
+                    hours={timer.hours}
+                    minutes={timer.minutes}
+                    seconds={timer.seconds}
+                    started={false}
+                    colour_primary={props.colour_primary}
+                    colour_secondary={props.colour_background}
+                    colour_tertiary={props.colour_tertiary}
+                    colour_text={props.colour_primary}
+                    backgroundColor={props.colour_tertiary}
+                  />
+                );
+              })
+            ) : (
+              <Typography
+                style={{
+                  color: props.colour_text,
+                  margin: 6,
+                  fontSize: "24px",
+                }}
+              >
+                No timers set! Add new timers or load a preset.
+              </Typography>
+            )}
             <StyledIconButton
               variant="contained"
               icon={<AddIcon fontSize="inherit" />}

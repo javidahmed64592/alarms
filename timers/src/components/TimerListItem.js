@@ -6,9 +6,9 @@ import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { getTimeRemaining, parseTimeText } from "../utils/TimerUtils";
 import TimerDisplay from "./TimerDisplay";
-import StyledIconButton from "../components/StyledIconButton";
+import StyledIconButton from "./StyledIconButton";
 
-export default function TimerObject(props) {
+export default function TimerListItem(props) {
   const Ref = useRef(null);
 
   const getTotalTime = () => {
@@ -16,6 +16,7 @@ export default function TimerObject(props) {
   };
 
   const [remainingTime, setRemainingTime] = useState(getTotalTime());
+  const [running, setRunning] = useState(false);
 
   const resetTime = () => {
     setRemainingTime(getTotalTime);
@@ -33,11 +34,13 @@ export default function TimerObject(props) {
 
   const stopTimer = () => {
     if (Ref.current) clearInterval(Ref.current);
+    setRunning(false);
   };
 
   const clearTimer = (e) => {
     stopTimer();
     const id = setInterval(() => {
+      setRunning(true);
       startTimer(e);
     }, 1000);
     Ref.current = id;
@@ -69,10 +72,14 @@ export default function TimerObject(props) {
     >
       <Stack justifyContent="center" alignItems="center">
         <TimerDisplay
+          key={props.label}
           label={props.label}
+          running={running}
           hoursText={parseTimeText(remainingTime).hoursText}
           minutesText={parseTimeText(remainingTime).minutesText}
           secondsText={parseTimeText(remainingTime).secondsText}
+          colour_primary={props.colour_primary}
+          colour_tertiary={props.colour_tertiary}
           colour_text={props.colour_text}
           backgroundColor={props.backgroundColor}
         />
