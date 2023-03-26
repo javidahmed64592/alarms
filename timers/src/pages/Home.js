@@ -52,9 +52,6 @@ function HomePage(props) {
                   <TimerListItem
                     key={timer.label}
                     label={timer.label}
-                    hours={timer.hours}
-                    minutes={timer.minutes}
-                    seconds={timer.seconds}
                     colour_primary={props.colour_primary}
                     colour_secondary={props.colour_background}
                     colour_tertiary={props.colour_tertiary}

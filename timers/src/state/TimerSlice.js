@@ -7,18 +7,12 @@ export const timerSlice = createSlice({
     value: [
       {
         label: "Timer 1",
-        hours: 0,
-        minutes: 0,
-        seconds: 5,
         setTime: 5,
         remainingTime: 5,
         running: false,
       },
       {
         label: "Timer 2",
-        hours: 2,
-        minutes: 0,
-        seconds: 0,
         setTime: 7200,
         remainingTime: 7200,
         running: false,
