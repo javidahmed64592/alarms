@@ -1,43 +1,33 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@mui/material";
 import { Stack } from "@mui/system";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import TimerDisplay from "./TimerDisplay";
-import StyledIconButton from "./StyledIconButton";
-import { HMSToTotal, parseTimeText } from "../utils/TimerUtils";
-import { stopTimer } from "../state/TimerSlice";
+import { parseTimeText } from "../utils/TimerUtils";
+import {
+  getTimerRunning,
+  getTimerRemainingTime,
+  countdown,
+} from "../state/TimerSlice";
 
 export default function TimerListItem(props) {
   const Ref = useRef(null);
   const dispatch = useDispatch();
 
-  const [remainingTime, setRemainingTime] = useState(
-    HMSToTotal(props.hours, props.minutes, props.seconds)
-  );
-  const running = useSelector(
-    (state) =>
-      state.timers.value.find((timer) => timer.label === props.label).running
+  const running = useSelector((state) => getTimerRunning(state, props.label));
+  const remainingTime = useSelector((state) =>
+    getTimerRemainingTime(state, props.label)
   );
 
   useEffect(() => {
     if (running && remainingTime > 0) {
       const interval = setInterval(() => {
-        setRemainingTime(remainingTime - 1);
+        dispatch(countdown(props.label));
       }, 1000);
       Ref.current = interval;
     }
     return () => clearInterval(Ref.current);
-  }, [running, remainingTime]);
-
-  const resetTime = () => {
-    setRemainingTime(HMSToTotal(props.hours, props.minutes, props.seconds));
-  };
-
-  const onClickReset = () => {
-    dispatch(stopTimer(props.label));
-    resetTime();
-  };
+  }, [running, remainingTime, dispatch, props.label]);
 
   return (
     <Card
@@ -60,16 +50,6 @@ export default function TimerListItem(props) {
           colour_text={props.colour_text}
           backgroundColor={props.backgroundColor}
         />
-        <Stack direction="row" spacing={3}>
-          <StyledIconButton
-            variant="contained"
-            icon={<RestartAltIcon fontSize="inherit" />}
-            onClick={onClickReset}
-            size={"large"}
-            iconColor={props.colour_text}
-            borderColour={props.colour_tertiary}
-          />
-        </Stack>
       </Stack>
     </Card>
   );

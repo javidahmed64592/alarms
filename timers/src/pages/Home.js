@@ -11,7 +11,7 @@ import GridItem from "../components/GridItem";
 import TimerListItem from "../components/TimerListItem";
 import StyledTextIconButton from "../components/StyledTextIconButton";
 import StyledIconButton from "../components/StyledIconButton";
-import { startTimers, stopTimers } from "../state/TimerSlice";
+import { startTimers, stopTimers, resetTimers } from "../state/TimerSlice";
 
 function HomePage(props) {
   const dispatch = useDispatch();
@@ -107,7 +107,7 @@ function HomePage(props) {
         <StyledIconButton
           variant="contained"
           icon={<RestartAltIcon fontSize="inherit" />}
-          onClick={() => alert("Clicked reset!")}
+          onClick={() => dispatch(resetTimers())}
           size={"large"}
           iconColor={props.colour_primary}
           borderColour={props.colour_tertiary}

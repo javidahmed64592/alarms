@@ -10,6 +10,8 @@ export const timerSlice = createSlice({
         hours: 0,
         minutes: 0,
         seconds: 5,
+        setTime: 5,
+        remainingTime: 5,
         running: false,
       },
       {
@@ -17,6 +19,8 @@ export const timerSlice = createSlice({
         hours: 2,
         minutes: 0,
         seconds: 0,
+        setTime: 7200,
+        remainingTime: 7200,
         running: false,
       },
     ],
@@ -59,6 +63,24 @@ export const timerSlice = createSlice({
         return timer;
       });
     },
+    countdown: (state, action) => {
+      state.value = state.value.map((timer) => {
+        const remainingTime =
+          timer.label === action.payload
+            ? timer.remainingTime - 1
+            : timer.remainingTime;
+        timer.remainingTime = remainingTime;
+        if (remainingTime === 0) timer.running = false;
+        return timer;
+      });
+    },
+    resetTimers: (state) => {
+      state.value = state.value = state.value.map((timer) => {
+        timer.remainingTime = timer.setTime;
+        timer.running = false;
+        return timer;
+      });
+    },
   },
 });
 
@@ -70,14 +92,25 @@ export const {
   startTimers,
   stopTimer,
   stopTimers,
+  countdown,
+  resetTimers,
 } = timerSlice.actions;
 
 export const selectList = (state) => state.timers.value;
 
 export const getTimerRunning = (state, label) => {
   const timer = state.timers.value.find((timer) => timer.label === label);
-
   return timer.running;
+};
+
+export const getTimerSetTime = (state, label) => {
+  const timer = state.timers.value.find((timer) => timer.label === label);
+  return timer.setTime;
+};
+
+export const getTimerRemainingTime = (state, label) => {
+  const timer = state.timers.value.find((timer) => timer.label === label);
+  return timer.remainingTime;
 };
 
 export default timerSlice.reducer;
