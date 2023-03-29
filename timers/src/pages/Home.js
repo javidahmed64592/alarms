@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Grid, Typography, Stack } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -11,7 +10,13 @@ import GridItem from "../components/GridItem";
 import TimerListItem from "../components/TimerListItem";
 import StyledTextIconButton from "../components/StyledTextIconButton";
 import StyledIconButton from "../components/StyledIconButton";
-import { startTimers, stopTimers, resetTimers } from "../state/TimerSlice";
+import AddTimerDialog from "../components/AddTimerDialog";
+import {
+  selectList,
+  startTimers,
+  stopTimers,
+  resetTimers,
+} from "../state/TimerSlice";
 
 function HomePage(props) {
   const dispatch = useDispatch();
@@ -30,7 +35,7 @@ function HomePage(props) {
     );
   }, []);
 
-  const timers = useSelector((state) => state.timers.value);
+  const timers = useSelector((state) => selectList(state));
 
   return (
     <Grid
@@ -38,6 +43,7 @@ function HomePage(props) {
       direction="column"
       justifyContent="flex-start"
       alignItems="center"
+      overflow="auto"
       style={{
         minWidth: "100%",
         height: "100vh",
@@ -50,7 +56,8 @@ function HomePage(props) {
               timers.map((timer) => {
                 return (
                   <TimerListItem
-                    key={timer.label}
+                    id={timer.id}
+                    key={timer.id}
                     label={timer.label}
                     colour_primary={props.colour_primary}
                     colour_secondary={props.colour_background}
@@ -71,14 +78,6 @@ function HomePage(props) {
                 No timers set! Add new timers or load a preset.
               </Typography>
             )}
-            <StyledIconButton
-              variant="contained"
-              icon={<AddIcon fontSize="inherit" />}
-              onClick={() => alert("Clicked add!")}
-              size={"large"}
-              iconColor={props.colour_primary}
-              borderColour={props.colour_tertiary}
-            />
           </Box>
         }
         flexGrow={1}

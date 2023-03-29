@@ -6,12 +6,14 @@ export const timerSlice = createSlice({
   initialState: {
     value: [
       {
+        id: "id1",
         label: "Timer 1",
         setTime: 5,
         remainingTime: 5,
         running: false,
       },
       {
+        id: "id2",
         label: "Timer 2",
         setTime: 7200,
         remainingTime: 7200,
@@ -27,13 +29,11 @@ export const timerSlice = createSlice({
       state.value = sortListByTime([...state.value, action.payload]);
     },
     deleteTimer: (state, action) => {
-      state.value = state.value.filter(
-        (timer) => timer.label !== action.payload
-      );
+      state.value = state.value.filter((timer) => timer.id !== action.payload);
     },
     startTimer: (state, action) => {
       state.value = state.value.map((timer) => {
-        const running = timer.label === action.payload ? true : timer.running;
+        const running = timer.id === action.payload ? true : timer.running;
         timer.running = running;
         return timer;
       });
@@ -46,7 +46,7 @@ export const timerSlice = createSlice({
     },
     stopTimer: (state, action) => {
       state.value = state.value.map((timer) => {
-        const running = timer.label === action.payload ? false : timer.running;
+        const running = timer.id === action.payload ? false : timer.running;
         timer.running = running;
         return timer;
       });
@@ -60,7 +60,7 @@ export const timerSlice = createSlice({
     countdown: (state, action) => {
       state.value = state.value.map((timer) => {
         const remainingTime =
-          timer.label === action.payload
+          timer.id === action.payload
             ? timer.remainingTime - 1
             : timer.remainingTime;
         timer.remainingTime = remainingTime;
@@ -92,18 +92,18 @@ export const {
 
 export const selectList = (state) => state.timers.value;
 
-export const getTimerRunning = (state, label) => {
-  const timer = state.timers.value.find((timer) => timer.label === label);
+export const getTimerRunning = (state, id) => {
+  const timer = state.timers.value.find((timer) => timer.id === id);
   return timer.running;
 };
 
-export const getTimerSetTime = (state, label) => {
-  const timer = state.timers.value.find((timer) => timer.label === label);
+export const getTimerSetTime = (state, id) => {
+  const timer = state.timers.value.find((timer) => timer.id === id);
   return timer.setTime;
 };
 
-export const getTimerRemainingTime = (state, label) => {
-  const timer = state.timers.value.find((timer) => timer.label === label);
+export const getTimerRemainingTime = (state, id) => {
+  const timer = state.timers.value.find((timer) => timer.id === id);
   return timer.remainingTime;
 };
 

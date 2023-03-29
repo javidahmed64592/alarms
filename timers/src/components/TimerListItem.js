@@ -14,20 +14,20 @@ export default function TimerListItem(props) {
   const Ref = useRef(null);
   const dispatch = useDispatch();
 
-  const running = useSelector((state) => getTimerRunning(state, props.label));
+  const running = useSelector((state) => getTimerRunning(state, props.id));
   const remainingTime = useSelector((state) =>
-    getTimerRemainingTime(state, props.label)
+    getTimerRemainingTime(state, props.id)
   );
 
   useEffect(() => {
     if (running && remainingTime > 0) {
       const interval = setInterval(() => {
-        dispatch(countdown(props.label));
+        dispatch(countdown(props.id));
       }, 1000);
       Ref.current = interval;
     }
     return () => clearInterval(Ref.current);
-  }, [running, remainingTime, dispatch, props.label]);
+  }, [running, remainingTime, dispatch, props.id]);
 
   return (
     <Card
@@ -40,7 +40,8 @@ export default function TimerListItem(props) {
     >
       <Stack justifyContent="center" alignItems="center">
         <TimerDisplay
-          key={props.label}
+          key={props.id}
+          id={props.id}
           label={props.label}
           hoursText={parseTimeText(remainingTime).hoursText}
           minutesText={parseTimeText(remainingTime).minutesText}

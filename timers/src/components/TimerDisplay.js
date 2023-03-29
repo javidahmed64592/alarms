@@ -5,14 +5,11 @@ import { Stack } from "@mui/system";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TimerComponentDisplay from "./TimerComponentDisplay";
 import StyledIconButton from "./StyledIconButton";
-import { deleteTimer } from "../state/TimerSlice";
+import { getTimerRunning, deleteTimer } from "../state/TimerSlice";
 
 export default function TimerDisplay(props) {
   const dispatch = useDispatch();
-  const running = useSelector(
-    (state) =>
-      state.timers.value.find((timer) => timer.label === props.label).running
-  );
+  const running = useSelector((state) => getTimerRunning(state, props.id));
   const timeText = [props.hoursText, props.minutesText, props.secondsText];
   const timeComponentText = ["HOURS", "MINUTES", "SECONDS"];
 
@@ -52,9 +49,9 @@ export default function TimerDisplay(props) {
 
       <StyledIconButton
         variant="contained"
-        disabled={props.running}
+        disabled={running}
         icon={<DeleteIcon fontSize="inherit" />}
-        onClick={() => dispatch(deleteTimer(props.label))}
+        onClick={() => dispatch(deleteTimer(props.id))}
         size={"large"}
         iconColor={deleteIconColour}
         borderColour={props.colour_tertiary}
