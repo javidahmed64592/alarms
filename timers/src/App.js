@@ -1,4 +1,3 @@
-import "./App.css";
 import { Box } from "@mui/material";
 import colours from "./public/Colours";
 import NavBar from "./components/NavBar";
