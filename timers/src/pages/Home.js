@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Typography, Stack } from "@mui/material";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import TimerListItem from "../components/TimerListItem";
 import StyledTextIconButton from "../components/StyledTextIconButton";
-import StyledIconButton from "../components/StyledIconButton";
 import AddTimerDialog from "../components/AddTimerDialog";
-import {
-  selectList,
-  startTimers,
-  stopTimers,
-  resetTimers,
-} from "../state/TimerSlice";
+import MediaButtons from "../components/MediaButtons";
+import { selectList } from "../state/TimerSlice";
 
 function HomePage(props) {
-  const dispatch = useDispatch();
   const [data, setData] = useState({
     title: "",
     date: "",
@@ -83,34 +74,16 @@ function HomePage(props) {
             No timers set! Add new timers or load a preset.
           </Typography>
         )}
+        <AddTimerDialog
+          colour_primary={props.colour_primary}
+          colour_tertiary={props.colour_tertiary}
+        />
       </Stack>
 
-      <Stack direction="row" margin={1} spacing={2}>
-        <StyledIconButton
-          variant="contained"
-          icon={<PlayArrowIcon fontSize="inherit" />}
-          onClick={() => dispatch(startTimers())}
-          size={"large"}
-          iconColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-        />
-        <StyledIconButton
-          variant="contained"
-          icon={<PauseIcon fontSize="inherit" />}
-          onClick={() => dispatch(stopTimers())}
-          size={"large"}
-          iconColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-        />
-        <StyledIconButton
-          variant="contained"
-          icon={<RestartAltIcon fontSize="inherit" />}
-          onClick={() => dispatch(resetTimers())}
-          size={"large"}
-          iconColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-        />
-      </Stack>
+      <MediaButtons
+        colour_primary={props.colour_primary}
+        colour_tertiary={props.colour_tertiary}
+      />
 
       <Stack direction="row" margin={1} spacing={2}>
         <StyledTextIconButton
