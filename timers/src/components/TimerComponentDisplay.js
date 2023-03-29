@@ -6,7 +6,7 @@ export default function TimerComponentDisplay(props) {
   return (
     <Stack
       direction="column"
-      justifyContent="center"
+      justifyContent="flex-start"
       alignItems="center"
       spacing={2}
     >
@@ -32,8 +32,8 @@ export default function TimerComponentDisplay(props) {
       <Typography
         style={{
           color: props.colour_text,
-          margin: 4,
-          fontSize: "14px",
+          margin: 2,
+          fontSize: "12px",
         }}
       >
         {props.timeComponentText}
