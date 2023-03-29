@@ -22,7 +22,7 @@ export default function TimerDisplay(props) {
       direction="column"
       justifyContent="center"
       alignItems="center"
-      spacing={0}
+      margin={1}
     >
       <Typography
         style={{

@@ -36,6 +36,7 @@ export default function TimerListItem(props) {
         backgroundColor: props.colour_secondary,
         border: "1px solid",
         borderColor: props.colour_text,
+        margin: 2,
       }}
     >
       <Stack justifyContent="center" alignItems="center">
