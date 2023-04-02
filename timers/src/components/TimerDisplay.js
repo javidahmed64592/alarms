@@ -35,6 +35,7 @@ export default function TimerDisplay(props) {
       margin={1}
     >
       <Typography
+        component={"span"}
         style={{
           color: props.colour_text,
           fontSize: "36px",
