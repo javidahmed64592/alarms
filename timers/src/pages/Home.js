@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Typography, Stack } from "@mui/material";
-import UploadFileIcon from "@mui/icons-material/UploadFile";
-import SaveIcon from "@mui/icons-material/Save";
 import TimerListItem from "../components/TimerListItem";
-import StyledTextIconButton from "../components/StyledTextIconButton";
 import AddTimerDialog from "../components/AddTimerDialog";
 import MediaButtons from "../components/MediaButtons";
 import { selectList } from "../state/TimerSlice";
@@ -84,25 +81,6 @@ function HomePage(props) {
         colour_primary={props.colour_primary}
         colour_tertiary={props.colour_tertiary}
       />
-
-      <Stack direction="row" margin={1} spacing={2}>
-        <StyledTextIconButton
-          variant="contained"
-          startIcon={<UploadFileIcon />}
-          onClick={() => alert("Clicked load!")}
-          backgroundColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-          label={props.loadButtonText}
-        />
-        <StyledTextIconButton
-          variant="contained"
-          startIcon={<SaveIcon />}
-          onClick={() => alert("Clicked save!")}
-          backgroundColor={props.colour_primary}
-          borderColour={props.colour_tertiary}
-          label={props.saveButtonText}
-        />
-      </Stack>
 
       <Typography style={{ color: props.colour_text }}>
         Last refresh: {data.date}
