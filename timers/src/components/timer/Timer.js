@@ -43,16 +43,14 @@ export default function Timer(props) {
           margin: 2,
         }}
       >
-        <Stack justifyContent="center" alignItems="center">
-          <Display
-            key={props.id}
-            id={props.id}
-            label={props.label}
-            hoursText={parseTimeText(remainingTime).hoursText}
-            minutesText={parseTimeText(remainingTime).minutesText}
-            secondsText={parseTimeText(remainingTime).secondsText}
-          />
-        </Stack>
+        <Display
+          key={props.id}
+          id={props.id}
+          label={props.label}
+          hoursText={parseTimeText(remainingTime).hoursText}
+          minutesText={parseTimeText(remainingTime).minutesText}
+          secondsText={parseTimeText(remainingTime).secondsText}
+        />
       </Card>
     </Box>
   );
