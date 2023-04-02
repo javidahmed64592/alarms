@@ -5,8 +5,24 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import ActionMenu from "./ActionMenu";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import SaveIcon from "@mui/icons-material/Save";
 
 export default function NavBar(props) {
+  const actionMenuItems = [
+    {
+      icon: <SaveIcon />,
+      label: "Save Preset",
+      onClick: () => alert("Clicked save!"),
+    },
+    {
+      icon: <UploadFileIcon />,
+      label: "Load Preset",
+      onClick: () => alert("Clicked load!"),
+    },
+  ];
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ background: props.colour_primary }}>
@@ -16,7 +32,6 @@ export default function NavBar(props) {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
           >
             <MenuIcon />
           </IconButton>
@@ -24,10 +39,16 @@ export default function NavBar(props) {
             variant="h6"
             component="div"
             color={props.colour_text}
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, textAlign: "center" }}
           >
             TIMERS
           </Typography>
+          <ActionMenu
+            colour_primary={props.colour_tertiary}
+            colour_text={props.colour_primary}
+            buttonColour={props.colour_text}
+            items={actionMenuItems}
+          />
         </Toolbar>
       </AppBar>
     </Box>

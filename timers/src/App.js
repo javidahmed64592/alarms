@@ -24,6 +24,7 @@ function App() {
     >
       <NavBar
         colour_primary={AppProps.colour_primary}
+        colour_tertiary={AppProps.colour_tertiary}
         colour_text={AppProps.colour_text}
       />
       <HomePage

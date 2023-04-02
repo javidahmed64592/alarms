@@ -2,9 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import TimerComponentDisplay from "./TimerComponentDisplay";
-import StyledIconButton from "./StyledIconButton";
+import ActionMenu from "./ActionMenu";
 import { getTimerRunning, deleteTimer } from "../state/TimerSlice";
 
 export default function TimerDisplay(props) {
@@ -13,9 +14,18 @@ export default function TimerDisplay(props) {
   const timeText = [props.hoursText, props.minutesText, props.secondsText];
   const timeComponentText = ["HOURS", "MINUTES", "SECONDS"];
 
-  const deleteIconColour = !running
-    ? props.colour_primary
-    : props.colour_tertiary;
+  const actionMenuItems = [
+    {
+      icon: <EditIcon />,
+      label: "Edit Timer",
+      onClick: () => alert("Clicked edit!"),
+    },
+    {
+      icon: <DeleteIcon />,
+      label: "Delete Timer",
+      onClick: () => dispatch(deleteTimer(props.id)),
+    },
+  ];
 
   return (
     <Stack
@@ -28,12 +38,20 @@ export default function TimerDisplay(props) {
         style={{
           color: props.colour_text,
           fontSize: "36px",
+          display: "flex",
         }}
       >
         {props.label}
+        <ActionMenu
+          colour_primary={props.colour_tertiary}
+          colour_text={props.colour_primary}
+          buttonColour={props.colour_primary}
+          disabled={running}
+          items={actionMenuItems}
+        />
       </Typography>
 
-      <Stack direction="row" margin={0} spacing={2}>
+      <Stack direction="row" margin={0} spacing={1}>
         {timeText.map((timeValue, index) => {
           return (
             <TimerComponentDisplay
@@ -46,16 +64,6 @@ export default function TimerDisplay(props) {
           );
         })}
       </Stack>
-
-      <StyledIconButton
-        variant="contained"
-        disabled={running}
-        icon={<DeleteIcon fontSize="inherit" />}
-        onClick={() => dispatch(deleteTimer(props.id))}
-        size={"large"}
-        iconColor={deleteIconColour}
-        borderColour={props.colour_tertiary}
-      />
     </Stack>
   );
 }
