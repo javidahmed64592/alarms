@@ -37,7 +37,6 @@ export default function NavBar(props) {
           </IconButton>
           <Typography
             variant="h6"
-            component="div"
             color={props.colour_text}
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
