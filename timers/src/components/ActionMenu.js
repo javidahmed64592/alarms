@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Menu from "@mui/material/Menu";
 import MenuList from "@mui/material/MenuList";
 import Box from "@mui/material/Box";
@@ -6,8 +7,10 @@ import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ActionMenuItem from "./ActionMenuItem";
 import Card from "@mui/material/Card";
+import { getColours } from "../state/ColourSlice";
 
 export default function ActionMenu(props) {
+  const colours = useSelector((state) => getColours(state));
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -25,7 +28,7 @@ export default function ActionMenu(props) {
         size="large"
         edge="end"
         disabled={props.disabled}
-        sx={{ color: props.buttonColour }}
+        sx={{ color: props.iconColour }}
         aria-label="menu"
         id="long-button"
         aria-controls={open ? "long-menu" : undefined}
@@ -45,9 +48,9 @@ export default function ActionMenu(props) {
         <Card
           variant="outlined"
           style={{
-            backgroundColor: props.colour_primary,
+            backgroundColor: colours.tertiary,
             border: "2px solid",
-            borderColor: props.colour_text,
+            borderColor: colours.primary,
           }}
         >
           <MenuList>
@@ -58,8 +61,6 @@ export default function ActionMenu(props) {
                   icon={item.icon}
                   label={item.label}
                   onClick={item.onClick}
-                  textColour={props.colour_text}
-                  backgroundColor={props.colour_primary}
                 />
               );
             })}

@@ -1,7 +1,11 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
+import { getColours } from "../state/ColourSlice";
 
 export default function StyledIconButton(props) {
+  const colours = useSelector((state) => getColours(state));
+
   return (
     <IconButton
       variant={props.variant}
@@ -9,7 +13,7 @@ export default function StyledIconButton(props) {
       onClick={props.onClick}
       size={props.size}
       style={{
-        color: props.iconColor,
+        color: colours.primary,
       }}
     >
       {props.icon}

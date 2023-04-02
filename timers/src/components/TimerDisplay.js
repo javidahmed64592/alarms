@@ -7,9 +7,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import TimerComponentDisplay from "./TimerComponentDisplay";
 import ActionMenu from "./ActionMenu";
 import { getTimerRunning, deleteTimer } from "../state/TimerSlice";
+import { getColours } from "../state/ColourSlice";
 
 export default function TimerDisplay(props) {
   const dispatch = useDispatch();
+  const colours = useSelector((state) => getColours(state));
   const running = useSelector((state) => getTimerRunning(state, props.id));
   const timeText = [props.hoursText, props.minutesText, props.secondsText];
   const timeComponentText = ["HOURS", "MINUTES", "SECONDS"];
@@ -37,16 +39,14 @@ export default function TimerDisplay(props) {
       <Typography
         component={"span"}
         style={{
-          color: props.colour_text,
+          color: colours.primary,
           fontSize: "36px",
           display: "flex",
         }}
       >
         {props.label}
         <ActionMenu
-          colour_primary={props.colour_tertiary}
-          colour_text={props.colour_primary}
-          buttonColour={props.colour_primary}
+          iconColour={colours.primary}
           disabled={running}
           items={actionMenuItems}
         />
@@ -57,8 +57,6 @@ export default function TimerDisplay(props) {
           return (
             <TimerComponentDisplay
               key={timeComponentText[index]}
-              backgroundColor={props.backgroundColor}
-              colour_text={props.colour_text}
               timeValue={timeValue}
               timeComponentText={timeComponentText[index]}
             />

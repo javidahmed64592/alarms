@@ -28,8 +28,6 @@ export default function AddTimerDialog(props) {
         icon={<AddIcon fontSize="inherit" />}
         onClick={handleClickOpen}
         size={"large"}
-        iconColor={props.colour_primary}
-        borderColour={props.colour_tertiary}
       />
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Timer</DialogTitle>

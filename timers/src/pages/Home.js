@@ -5,8 +5,9 @@ import TimerListItem from "../components/TimerListItem";
 import AddTimerDialog from "../components/AddTimerDialog";
 import MediaButtons from "../components/MediaButtons";
 import { selectList } from "../state/TimerSlice";
+import { getColours } from "../state/ColourSlice";
 
-function HomePage(props) {
+function HomePage() {
   const [data, setData] = useState({
     title: "",
     date: "",
@@ -22,6 +23,7 @@ function HomePage(props) {
     );
   }, []);
 
+  const colours = useSelector((state) => getColours(state));
   const timers = useSelector((state) => selectList(state));
 
   return (
@@ -47,22 +49,13 @@ function HomePage(props) {
         {timers.length ? (
           timers.map((timer) => {
             return (
-              <TimerListItem
-                id={timer.id}
-                key={timer.id}
-                label={timer.label}
-                colour_primary={props.colour_primary}
-                colour_secondary={props.colour_background}
-                colour_tertiary={props.colour_tertiary}
-                colour_text={props.colour_primary}
-                backgroundColor={props.colour_tertiary}
-              />
+              <TimerListItem id={timer.id} key={timer.id} label={timer.label} />
             );
           })
         ) : (
           <Typography
             style={{
-              color: props.colour_text,
+              color: colours.quaternary,
               margin: 6,
               fontSize: "24px",
             }}
@@ -70,18 +63,12 @@ function HomePage(props) {
             No timers set! Add new timers or load a preset.
           </Typography>
         )}
-        <AddTimerDialog
-          colour_primary={props.colour_primary}
-          colour_tertiary={props.colour_tertiary}
-        />
+        <AddTimerDialog />
       </Stack>
 
-      <MediaButtons
-        colour_primary={props.colour_primary}
-        colour_tertiary={props.colour_tertiary}
-      />
+      <MediaButtons />
 
-      <Typography style={{ color: props.colour_text }}>
+      <Typography style={{ color: colours.quaternary }}>
         Last refresh: {data.date}
       </Typography>
     </Stack>

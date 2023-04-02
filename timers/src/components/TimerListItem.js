@@ -10,10 +10,12 @@ import {
   getTimerRemainingTime,
   countdown,
 } from "../state/TimerSlice";
+import { getColours } from "../state/ColourSlice";
 
 export default function TimerListItem(props) {
   const Ref = useRef(null);
   const dispatch = useDispatch();
+  const colours = useSelector((state) => getColours(state));
 
   const running = useSelector((state) => getTimerRunning(state, props.id));
   const remainingTime = useSelector((state) =>
@@ -35,9 +37,9 @@ export default function TimerListItem(props) {
       <Card
         variant="outlined"
         style={{
-          backgroundColor: props.colour_secondary,
+          backgroundColor: colours.secondary,
           border: "1px solid",
-          borderColor: props.colour_text,
+          borderColor: colours.primary,
           margin: 2,
         }}
       >
@@ -49,10 +51,6 @@ export default function TimerListItem(props) {
             hoursText={parseTimeText(remainingTime).hoursText}
             minutesText={parseTimeText(remainingTime).minutesText}
             secondsText={parseTimeText(remainingTime).secondsText}
-            colour_primary={props.colour_primary}
-            colour_tertiary={props.colour_tertiary}
-            colour_text={props.colour_text}
-            backgroundColor={props.backgroundColor}
           />
         </Stack>
       </Card>

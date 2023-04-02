@@ -7,7 +7,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import StyledIconButton from "./StyledIconButton";
 import { startTimers, stopTimers, resetTimers } from "../state/TimerSlice";
 
-export default function MediaButtons(props) {
+export default function MediaButtons() {
   const dispatch = useDispatch();
 
   return (
@@ -17,24 +17,18 @@ export default function MediaButtons(props) {
         icon={<PlayArrowIcon fontSize="inherit" />}
         onClick={() => dispatch(startTimers())}
         size={"large"}
-        iconColor={props.colour_primary}
-        borderColour={props.colour_tertiary}
       />
       <StyledIconButton
         variant="contained"
         icon={<PauseIcon fontSize="inherit" />}
         onClick={() => dispatch(stopTimers())}
         size={"large"}
-        iconColor={props.colour_primary}
-        borderColour={props.colour_tertiary}
       />
       <StyledIconButton
         variant="contained"
         icon={<RestartAltIcon fontSize="inherit" />}
         onClick={() => dispatch(resetTimers())}
         size={"large"}
-        iconColor={props.colour_primary}
-        borderColour={props.colour_tertiary}
       />
     </Stack>
   );

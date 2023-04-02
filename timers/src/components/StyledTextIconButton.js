@@ -1,7 +1,11 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
+import { getColours } from "../state/ColourSlice";
 
 export default function StyledTextIconButton(props) {
+  const colours = useSelector((state) => getColours(state));
+
   return (
     <Button
       variant={props.variant}
@@ -9,8 +13,8 @@ export default function StyledTextIconButton(props) {
       startIcon={props.startIcon}
       onClick={props.onClick}
       style={{
-        backgroundColor: props.backgroundColor,
-        borderColor: props.borderColor,
+        backgroundColor: colours.secondary,
+        borderColor: colours.primary,
       }}
     >
       {props.label}

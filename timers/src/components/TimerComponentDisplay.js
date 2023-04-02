@@ -1,8 +1,12 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import { Card, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import { getColours } from "../state/ColourSlice";
 
 export default function TimerComponentDisplay(props) {
+  const colours = useSelector((state) => getColours(state));
+
   return (
     <Stack
       direction="column"
@@ -13,14 +17,14 @@ export default function TimerComponentDisplay(props) {
       <Card
         variant="outlined"
         style={{
-          backgroundColor: props.backgroundColor,
+          backgroundColor: colours.tertiary,
           border: "1px solid",
-          borderColor: props.colour_text,
+          borderColor: colours.primary,
         }}
       >
         <Typography
           style={{
-            color: props.colour_text,
+            color: colours.primary,
             marginLeft: 8,
             marginRight: 8,
             fontSize: "48px",
@@ -31,7 +35,7 @@ export default function TimerComponentDisplay(props) {
       </Card>
       <Typography
         style={{
-          color: props.colour_text,
+          color: colours.primary,
           margin: 2,
           fontSize: "12px",
         }}
