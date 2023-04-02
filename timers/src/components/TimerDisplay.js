@@ -17,12 +17,12 @@ export default function TimerDisplay(props) {
   const actionMenuItems = [
     {
       icon: <EditIcon />,
-      label: "Edit Timer",
+      label: "Edit",
       onClick: () => alert("Clicked edit!"),
     },
     {
       icon: <DeleteIcon />,
-      label: "Delete Timer",
+      label: "Delete",
       onClick: () => dispatch(deleteTimer(props.id)),
     },
   ];
