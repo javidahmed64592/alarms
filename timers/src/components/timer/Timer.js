@@ -1,8 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Card } from "@mui/material";
-import { Stack } from "@mui/system";
-import Box from "@mui/material/Box";
+import { Card, Box } from "@mui/material";
 import Display from "./Display";
 import { parseTimeText } from "../../utils/TimerUtils";
 import {
