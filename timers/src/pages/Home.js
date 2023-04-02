@@ -26,7 +26,6 @@ function HomePage(props) {
 
   return (
     <Stack
-      container
       direction="column"
       justifyContent="flex-start"
       alignItems="center"
