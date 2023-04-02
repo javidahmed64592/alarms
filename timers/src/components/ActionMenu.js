@@ -40,7 +40,7 @@ export default function ActionMenu(props) {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        sx={{ padding: 0 }}
+        MenuListProps={{ disablePadding: true }}
       >
         <Card
           variant="outlined"
