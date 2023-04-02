@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useSelector } from "react-redux";
 import { Card, Typography } from "@mui/material";
 import { Stack } from "@mui/system";

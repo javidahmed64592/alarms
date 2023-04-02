@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import { getColours } from "../state/ColourSlice";
