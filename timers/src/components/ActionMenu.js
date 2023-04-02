@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ActionMenuItem from "./ActionMenuItem";
-import Paper from "@mui/material/Paper";
+import Card from "@mui/material/Card";
 
 export default function ActionMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -36,8 +36,20 @@ export default function ActionMenu(props) {
         <MoreVertIcon />
       </IconButton>
 
-      <Paper>
-        <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        sx={{ padding: 0 }}
+      >
+        <Card
+          variant="outlined"
+          style={{
+            backgroundColor: props.colour_primary,
+            border: "2px solid",
+            borderColor: props.colour_text,
+          }}
+        >
           <MenuList>
             {props.items.map((item) => {
               return (
@@ -52,8 +64,8 @@ export default function ActionMenu(props) {
               );
             })}
           </MenuList>
-        </Menu>
-      </Paper>
+        </Card>
+      </Menu>
     </Box>
   );
 }
