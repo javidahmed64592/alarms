@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { Card, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import { getColours } from "../state/ColourSlice";
+import { getColours } from "../../state/ColourSlice";
 
-export default function TimerComponentDisplay(props) {
+export default function TimeComponent(props) {
   const colours = useSelector((state) => getColours(state));
 
   return (

@@ -3,12 +3,12 @@ import { Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import TimerComponentDisplay from "./TimerComponentDisplay";
-import ActionMenu from "./ActionMenu";
-import { getTimerRunning, deleteTimer } from "../state/TimerSlice";
-import { getColours } from "../state/ColourSlice";
+import TimeComponent from "./TimeComponent";
+import ActionMenu from "../menu/ActionMenu";
+import { getTimerRunning, deleteTimer } from "../../state/TimerSlice";
+import { getColours } from "../../state/ColourSlice";
 
-export default function TimerDisplay(props) {
+export default function Display(props) {
   const dispatch = useDispatch();
   const colours = useSelector((state) => getColours(state));
   const running = useSelector((state) => getTimerRunning(state, props.id));
@@ -54,7 +54,7 @@ export default function TimerDisplay(props) {
       <Stack direction="row" margin={0} spacing={1}>
         {timeText.map((timeValue, index) => {
           return (
-            <TimerComponentDisplay
+            <TimeComponent
               key={timeComponentText[index]}
               timeValue={timeValue}
               timeComponentText={timeComponentText[index]}

@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ActionMenuItem from "./ActionMenuItem";
 import Card from "@mui/material/Card";
-import { getColours } from "../state/ColourSlice";
+import { getColours } from "../../state/ColourSlice";
 
 export default function ActionMenu(props) {
   const colours = useSelector((state) => getColours(state));

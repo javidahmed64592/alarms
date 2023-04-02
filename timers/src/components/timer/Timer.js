@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@mui/material";
 import { Stack } from "@mui/system";
 import Box from "@mui/material/Box";
-import TimerDisplay from "./TimerDisplay";
-import { parseTimeText } from "../utils/TimerUtils";
+import Display from "./Display";
+import { parseTimeText } from "../../utils/TimerUtils";
 import {
   getTimerRunning,
   getTimerRemainingTime,
   countdown,
-} from "../state/TimerSlice";
-import { getColours } from "../state/ColourSlice";
+} from "../../state/TimerSlice";
+import { getColours } from "../../state/ColourSlice";
 
-export default function TimerListItem(props) {
+export default function Timer(props) {
   const Ref = useRef(null);
   const dispatch = useDispatch();
   const colours = useSelector((state) => getColours(state));
@@ -44,7 +44,7 @@ export default function TimerListItem(props) {
         }}
       >
         <Stack justifyContent="center" alignItems="center">
-          <TimerDisplay
+          <Display
             key={props.id}
             id={props.id}
             label={props.label}

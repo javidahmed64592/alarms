@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Button } from "@mui/material";
-import { getColours } from "../state/ColourSlice";
+import { getColours } from "../../state/ColourSlice";
 
 export default function StyledTextIconButton(props) {
   const colours = useSelector((state) => getColours(state));

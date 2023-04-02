@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Typography, Stack } from "@mui/material";
-import TimerListItem from "../components/TimerListItem";
-import AddTimerDialog from "../components/AddTimerDialog";
-import MediaButtons from "../components/MediaButtons";
+import Timer from "../components/timer/Timer";
+import TimerDialog from "../components/dialog/TimerDialog";
+import MediaButtons from "../components/buttons/MediaButtons";
 import { selectList } from "../state/TimerSlice";
 import { getColours } from "../state/ColourSlice";
 
@@ -48,9 +48,7 @@ function HomePage() {
       >
         {timers.length ? (
           timers.map((timer) => {
-            return (
-              <TimerListItem id={timer.id} key={timer.id} label={timer.label} />
-            );
+            return <Timer id={timer.id} key={timer.id} label={timer.label} />;
           })
         ) : (
           <Typography
@@ -63,7 +61,7 @@ function HomePage() {
             No timers set! Add new timers or load a preset.
           </Typography>
         )}
-        <AddTimerDialog />
+        <TimerDialog />
       </Stack>
 
       <MediaButtons />

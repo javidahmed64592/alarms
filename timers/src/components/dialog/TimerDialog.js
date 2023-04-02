@@ -8,9 +8,9 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
-import StyledIconButton from "./StyledIconButton";
+import StyledIconButton from "../buttons/StyledIconButton";
 
-export default function AddTimerDialog(props) {
+export default function TimerDialog(props) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {

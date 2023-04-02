@@ -4,7 +4,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import StyledIconButton from "./StyledIconButton";
-import { startTimers, stopTimers, resetTimers } from "../state/TimerSlice";
+import { startTimers, stopTimers, resetTimers } from "../../state/TimerSlice";
 
 export default function MediaButtons() {
   const dispatch = useDispatch();

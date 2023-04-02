@@ -5,9 +5,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import ActionMenu from "./ActionMenu";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
+import ActionMenu from "./menu/ActionMenu";
 import { getColours } from "../state/ColourSlice";
 
 export default function NavBar(props) {
