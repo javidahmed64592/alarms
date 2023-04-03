@@ -17,7 +17,7 @@ export default function TimeComponent(props) {
         variant="outlined"
         style={{
           backgroundColor: colours.tertiary,
-          border: "1px solid",
+          border: "2px solid",
           borderColor: colours.primary,
         }}
       >

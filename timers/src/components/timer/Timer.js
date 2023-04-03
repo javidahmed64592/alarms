@@ -36,7 +36,7 @@ export default function Timer(props) {
         variant="outlined"
         style={{
           backgroundColor: colours.secondary,
-          border: "1px solid",
+          border: "2px solid",
           borderColor: colours.primary,
           margin: 2,
         }}
