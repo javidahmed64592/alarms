@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,9 +10,16 @@ import AddIcon from "@mui/icons-material/Add";
 import TimePicker from "./TimePicker";
 import StyledIconButton from "../buttons/StyledIconButton";
 import { getColours } from "../../state/ColourSlice";
+import { resetDetails, getTimerDetails } from "../../state/TimerDetailsSlice";
+import { addTimer } from "../../state/TimerSlice";
+import { HMSToTotal } from "../../utils/TimerUtils";
 
 export default function TimerDialog(props) {
+  const dispatch = useDispatch();
   const colours = useSelector((state) => getColours(state));
+  const { label, hours, minutes, seconds } = useSelector((state) =>
+    getTimerDetails(state)
+  );
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -21,6 +28,14 @@ export default function TimerDialog(props) {
 
   const handleClose = () => {
     setOpen(false);
+    dispatch(resetDetails());
+  };
+
+  const updateTimer = () => {
+    dispatch(
+      addTimer({ label: label, setTime: HMSToTotal(hours, minutes, seconds) })
+    );
+    handleClose();
   };
 
   return (
@@ -58,7 +73,7 @@ export default function TimerDialog(props) {
             </Button>
             <Button
               style={{ color: colours.primary, fontWeight: "bold" }}
-              onClick={handleClose}
+              onClick={updateTimer}
             >
               Add
             </Button>

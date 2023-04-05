@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import { sortListByTime } from "../utils/TimerUtils";
 
 export const timerSlice = createSlice({
@@ -26,7 +27,13 @@ export const timerSlice = createSlice({
       state.value = action.payload;
     },
     addTimer: (state, action) => {
-      state.value = sortListByTime([...state.value, action.payload]);
+      const timer = {
+        id: uuidv4(),
+        remainingTime: action.payload.setTime,
+        running: false,
+        ...action.payload,
+      };
+      state.value = sortListByTime([...state.value, timer]);
     },
     deleteTimer: (state, action) => {
       state.value = state.value.filter((timer) => timer.id !== action.payload);

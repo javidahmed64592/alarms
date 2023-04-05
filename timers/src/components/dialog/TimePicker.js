@@ -1,39 +1,50 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Stack } from "@mui/system";
 import { Box, TextField, Typography } from "@mui/material";
 import TimePickerComponent from "./TimePickerComponent";
 import { getColours } from "../../state/ColourSlice";
 import { setMaxValue } from "../../utils/TimerUtils";
+import {
+  setLabel,
+  setHours,
+  setMinutes,
+  setSeconds,
+  resetDetails,
+  getTimerDetails,
+} from "../../state/TimerDetailsSlice";
 
 export default function TimePicker() {
+  const dispatch = useDispatch();
+  dispatch(resetDetails);
+  const { label, hours, minutes, seconds } = useSelector((state) =>
+    getTimerDetails(state)
+  );
   const colours = useSelector((state) => getColours(state));
-  const [label, setLabel] = useState("New timer");
-  const [hours, setHours] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
 
   const onChangeLabel = (event) => {
-    setLabel(event.target.value);
+    dispatch(setLabel(event.target.value));
   };
 
   const timeComponentObjects = [
     {
       time: hours,
       text: "HOURS",
-      onChange: (event) => setHours(setMaxValue(event.target.value, 99)),
+      onChange: (event) =>
+        dispatch(setHours(setMaxValue(event.target.value, 99))),
       maxValue: 99,
     },
     {
       time: minutes,
       text: "MINUTES",
-      onChange: (event) => setMinutes(setMaxValue(event.target.value, 59)),
+      onChange: (event) =>
+        dispatch(setMinutes(setMaxValue(event.target.value, 59))),
       maxValue: 59,
     },
     {
       time: seconds,
       text: "SECONDS",
-      onChange: (event) => setSeconds(setMaxValue(event.target.value, 59)),
+      onChange: (event) =>
+        dispatch(setSeconds(setMaxValue(event.target.value, 59))),
       maxValue: 59,
     },
   ];

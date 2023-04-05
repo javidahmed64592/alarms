@@ -39,9 +39,7 @@ export const setMaxValue = (value, maxValue) => {
 
 export const sortListByTime = (listToSort) => {
   const newList = listToSort.sort(
-    (timerA, timerB) =>
-      HMSToTotal(timerA.hours, timerA.minutes, timerA.seconds) -
-      HMSToTotal(timerB.hours, timerB.minutes, timerB.seconds)
+    (timerA, timerB) => timerA.setTime - timerB.setTime
   );
   return newList;
 };
