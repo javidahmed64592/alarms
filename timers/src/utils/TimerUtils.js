@@ -27,7 +27,15 @@ export const parseTimeText = (total) => {
   };
 };
 
-export const zeroFill = (value) => (value > 9 ? value : "0" + value);
+export const zeroFill = (value) => {
+  value = parseInt(value);
+  value = value > 9 ? value : "0" + value;
+  return value;
+};
+
+export const setMaxValue = (value, maxValue) => {
+  return zeroFill(Math.min(value, maxValue));
+};
 
 export const sortListByTime = (listToSort) => {
   const newList = listToSort.sort(
