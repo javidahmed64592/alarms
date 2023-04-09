@@ -1,17 +1,13 @@
+import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import NavBar from "./components/NavBar";
-import HomePage from "./pages/Home";
+import { pages } from "./public/Pages";
 import { getColours } from "./state/ColourSlice";
-import { useSelector } from "react-redux";
-
-const AppProps = {
-  addButtonText: "Add Timer",
-  loadButtonText: "Load Preset",
-  saveButtonText: "Save Preset",
-};
+import { getPage } from "./state/PageSlice";
 
 export default function App() {
   const colours = useSelector((state) => getColours(state));
+  const pageState = useSelector((state) => getPage(state));
 
   return (
     <Box
@@ -22,11 +18,7 @@ export default function App() {
       style={{ backgroundColor: colours.secondary }}
     >
       <NavBar />
-      <HomePage
-        addButtonText={AppProps.addButtonText}
-        loadButtonText={AppProps.loadButtonText}
-        saveButtonText={AppProps.saveButtonText}
-      />
+      {pages[pageState]}
     </Box>
   );
 }
