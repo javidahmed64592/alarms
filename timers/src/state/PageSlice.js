@@ -5,13 +5,13 @@ export const pageSlice = createSlice({
   initialState: {
     value: {
       page: "homePage",
-      navbarHeader: "Timers",
+      navbarHeader: "TIMERS",
     },
   },
   reducers: {
     goHomePage: (state) => {
       state.value.page = "homePage";
-      state.value.navbarHeader = "Timers";
+      state.value.navbarHeader = "TIMERS";
     },
     setNavbarHeader: (state, action) => {
       state.value.navbarHeader = action.payload;

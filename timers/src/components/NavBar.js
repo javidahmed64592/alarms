@@ -9,9 +9,11 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import SaveIcon from "@mui/icons-material/Save";
 import ActionMenu from "./menu/ActionMenu";
 import { getColours } from "../state/ColourSlice";
+import { getNavbarHeader } from "../state/PageSlice";
 
-export default function NavBar(props) {
+export default function NavBar() {
   const colours = useSelector((state) => getColours(state));
+  const navbarHeader = useSelector((state) => getNavbarHeader(state));
 
   const actionMenuItems = [
     {
@@ -43,7 +45,7 @@ export default function NavBar(props) {
             color={colours.quaternary}
             sx={{ flexGrow: 1, textAlign: "center" }}
           >
-            TIMERS
+            {navbarHeader}
           </Typography>
           <ActionMenu iconColour={colours.quaternary} items={actionMenuItems} />
         </Toolbar>
