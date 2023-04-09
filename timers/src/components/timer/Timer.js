@@ -83,7 +83,6 @@ export default function Timer(props) {
           <Display
             key={props.id}
             id={props.id}
-            label={props.label}
             hoursText={parseTimeText(remainingTime).hoursText}
             minutesText={parseTimeText(remainingTime).minutesText}
             secondsText={parseTimeText(remainingTime).secondsText}
