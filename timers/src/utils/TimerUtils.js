@@ -1,5 +1,5 @@
 export const HMSToTotal = (hours, minutes, seconds) => {
-  return seconds + minutes * 60 + hours * 3600;
+  return parseInt(seconds) + parseInt(minutes) * 60 + parseInt(hours) * 3600;
 };
 
 const totalToHMS = (total) => {
